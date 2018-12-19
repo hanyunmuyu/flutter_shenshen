@@ -56,6 +56,7 @@ class _SchoolDetailPageState extends State<SchoolDetailPage>
                 child: Icon(
                   _isFavorite ? Icons.favorite : Icons.favorite_border,
                 ),
+                mini: true,
               ),
               right: 0.0,
               bottom: 22.0,
@@ -125,7 +126,7 @@ class _SchoolDetailPageState extends State<SchoolDetailPage>
     super.initState();
     _tabController = new TabController(
       length: _myTabs.length,
-      initialIndex: 1,
+      initialIndex: 0,
       vsync: this,
     );
   }
