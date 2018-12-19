@@ -138,6 +138,7 @@ class ActiveDetail extends StatelessWidget {
                   Icon(
                     Icons.thumb_up,
                     size: 12.0,
+                    color: hasPic ? Theme.of(context).primaryColor : null,
                   ),
                   Divider(),
                   Text('111')
