@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 typedef ScrollControllerCallback(double position);
 
 class SchoolActive extends StatefulWidget {
-  ScrollControllerCallback callback;
-  double appBarHeight;
+  final ScrollControllerCallback callback;
+  final double appBarHeight;
 
   SchoolActive({this.callback, this.appBarHeight = 200.0});
 
@@ -14,9 +14,14 @@ class SchoolActive extends StatefulWidget {
   }
 }
 
-class _SchoolActiveState extends State<SchoolActive> {
+class _SchoolActiveState extends State<SchoolActive>
+    with AutomaticKeepAliveClientMixin {
   ScrollController _scrollController;
   double _appBarHeight = 200.0;
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {

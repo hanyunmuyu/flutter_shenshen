@@ -14,9 +14,14 @@ class SchoolQuestion extends StatefulWidget {
   }
 }
 
-class _SchoolQuestionState extends State<SchoolQuestion> {
+class _SchoolQuestionState extends State<SchoolQuestion>
+    with AutomaticKeepAliveClientMixin {
   ScrollController _scrollController;
   double _appBarHeight = 200.0;
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
