@@ -12,9 +12,9 @@ class Storage {
     return sharedPreferences.getString(key);
   }
 
-  static delete(String key) async {
+  static Future delete(String key) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.remove(key);
+    return sharedPreferences.remove(key);
   }
   static clear() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

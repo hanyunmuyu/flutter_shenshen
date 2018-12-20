@@ -34,9 +34,9 @@ class UserService extends BaseService {
 
   static logout(BuildContext context, Store store) async {
     store.dispatch(UpdateUserAction(null));
-    Storage.clear();
+    Storage.delete(userKey);
     Navigator.of(context)
-      ..pop(true)
+      ..maybePop()
       ..pushReplacementNamed('/home');
   }
 
@@ -46,9 +46,12 @@ class UserService extends BaseService {
     return res;
   }
 
-  static changeUserTheme(Store store, String themeData) async {
+  static changeUserTheme(Store store, String themeData,
+      [bool save = true]) async {
     ThemeModel themeModel = new ThemeModel(themeData.trim());
-    Storage.write(themeKey, json.encode(themeModel));
+    if (save) {
+      Storage.write(themeKey, json.encode(themeModel));
+    }
     store.dispatch(RefreshThemeAction(themeModel));
   }
 
@@ -57,6 +60,8 @@ class UserService extends BaseService {
       if (v != null) {
         Map map = json.decode(v.toString());
         store.dispatch(RefreshThemeAction(new ThemeModel(map['themeData'])));
+      } else {
+        store.dispatch(RefreshThemeAction(new ThemeModel('purple')));
       }
     });
   }

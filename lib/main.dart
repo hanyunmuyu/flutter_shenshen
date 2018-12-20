@@ -45,9 +45,10 @@ class _App extends State<App> {
           title: '莘莘',
           theme: ThemeModel.map[store.state.themeModel.themeData],
           routes: <String, WidgetBuilder>{
-            '/search': (BuildContext context) => SearchPage()
+            '/home': (BuildContext context) => MainPage(),
+            '/search': (BuildContext context) => SearchPage(),
           },
-          home: new MainPage(),
+          home: MainPage(),
         );
       },
       converter: (store) {

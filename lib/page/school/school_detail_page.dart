@@ -25,7 +25,7 @@ class _SchoolDetailPageState extends State<SchoolDetailPage>
       text: '社团',
     ),
     new Tab(
-      text: '同学',
+      text: '校友',
     ),
     new Tab(
       text: '问答',

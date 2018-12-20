@@ -25,7 +25,7 @@ class _SchoolStudentState extends State<SchoolStudent> {
 
     _scrollController = ScrollController()
       ..addListener(
-            () {
+        () {
           double _p = _scrollController.position.pixels
               .toDouble()
               .clamp(.0, _appBarHeight);
@@ -49,7 +49,13 @@ class _SchoolStudentState extends State<SchoolStudent> {
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) => Text('school_student ''$index'),
+              (BuildContext context, int index) => ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: AssetImage('images/c.jpg'),
+                    ),
+                    title: Text('student $index'),
+                    subtitle: Text('student $index'),
+                  ),
               childCount: 55),
         )
       ],

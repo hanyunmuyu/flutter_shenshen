@@ -26,19 +26,6 @@ class _SettingPageState extends State<SettingPage> {
             new StoreConnector<AppState, Store>(
               builder: (context, store) {
                 return new FlatButton(
-                  color: Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  onPressed: () {
-                    UserService.logout(context, store);
-                  },
-                  child: new Text('退出'),
-                );
-              },
-              converter: (store) => store,
-            ),
-            new StoreConnector<AppState, Store>(
-              builder: (context, store) {
-                return new FlatButton(
                   color: Colors.purple,
                   textColor: Colors.white,
                   child: new Text('purple'),
