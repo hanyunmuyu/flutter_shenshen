@@ -65,7 +65,7 @@ class _SchoolPageState extends State<SchoolPage> with TickerProviderStateMixin {
     super.initState();
     _tabController = new TabController(
       length: _myTabs.length,
-      initialIndex: 0,
+      initialIndex: 2,
       vsync: this,
     );
   }
