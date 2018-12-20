@@ -5,6 +5,7 @@ import './redux/AppState.dart';
 import './model/ThemeModel.dart';
 import './main_page.dart';
 import './page/search/search_page.dart';
+import './service/UserService.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    UserService.initTheme(store);
     return new StoreProvider(
       store: store,
       child: new App(),
@@ -40,7 +42,7 @@ class _App extends State<App> {
     return new StoreConnector<AppState, Store>(
       builder: (context, store) {
         return MaterialApp(
-          title: 'Flutter Demo',
+          title: '莘莘',
           theme: ThemeModel.map[store.state.themeModel.themeData],
           routes: <String, WidgetBuilder>{
             '/search': (BuildContext context) => SearchPage()
@@ -48,7 +50,9 @@ class _App extends State<App> {
           home: new MainPage(),
         );
       },
-      converter: (store) => store,
+      converter: (store) {
+        return store;
+      },
     );
   }
 }

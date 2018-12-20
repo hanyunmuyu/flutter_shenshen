@@ -47,14 +47,18 @@ class UserService extends BaseService {
   }
 
   static changeUserTheme(Store store, String themeData) async {
-    ThemeModel themeModel = new ThemeModel(themeData.trim().toLowerCase());
+    ThemeModel themeModel = new ThemeModel(themeData.trim());
     Storage.write(themeKey, json.encode(themeModel));
     store.dispatch(RefreshThemeAction(themeModel));
   }
 
-  static initTheme(Store store, String themeModelJson) async {
-    Map map = json.decode(themeModelJson);
-    store.dispatch(RefreshThemeAction(new ThemeModel(map['themeData'])));
+  static initTheme(Store store) async {
+    Storage.read(themeKey).then((v) {
+      if (v != null) {
+        Map map = json.decode(v.toString());
+        store.dispatch(RefreshThemeAction(new ThemeModel(map['themeData'])));
+      }
+    });
   }
 
   static Future getThemeInfo() async {
