@@ -62,7 +62,7 @@ class _SchoolActiveState extends State<SchoolActive> {
 }
 
 class ActiveDetail extends StatelessWidget {
-  bool hasPic;
+  final bool hasPic;
 
   ActiveDetail(this.hasPic);
 
@@ -140,7 +140,9 @@ class ActiveDetail extends StatelessWidget {
                     size: 12.0,
                     color: hasPic ? Theme.of(context).primaryColor : null,
                   ),
-                  Divider(),
+                  Divider(
+                    indent: 4,
+                  ),
                   Text('111')
                 ],
               ),
@@ -154,7 +156,9 @@ class ActiveDetail extends StatelessWidget {
                     Icons.comment,
                     size: 12.0,
                   ),
-                  Divider(),
+                  Divider(
+                    indent: 4,
+                  ),
                   Text('111')
                 ],
               ),
