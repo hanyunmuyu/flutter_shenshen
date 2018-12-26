@@ -3,6 +3,7 @@ import 'school_active.dart';
 import 'school_community.dart';
 import 'school_student.dart';
 import 'school_question_page.dart';
+import 'school_post.dart';
 
 class SchoolDetailPage extends StatefulWidget {
   @override
@@ -76,7 +77,13 @@ class _SchoolDetailPageState extends State<SchoolDetailPage>
         preferredSize: Size(double.infinity, 22.0),
       ),
       actions: <Widget>[
-        Icon(Icons.camera_enhance),
+        IconButton(
+            icon: Icon(Icons.camera_alt),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) {
+                return SchoolPost();
+              }));
+            }),
       ],
     );
     return Scaffold(
