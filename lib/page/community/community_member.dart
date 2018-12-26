@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 typedef ScrollControllerCallback(double position);
 
-class SchoolQuestion extends StatefulWidget {
+class CommunityMember extends StatefulWidget {
   final ScrollControllerCallback callback;
   final double appBarHeight;
 
-  SchoolQuestion({this.callback, this.appBarHeight = 200.0});
+  CommunityMember({this.callback, this.appBarHeight = 200.0});
 
   @override
   State createState() {
-    return _SchoolQuestionState();
+    return _CommunityMemberState();
   }
 }
 
-class _SchoolQuestionState extends State<SchoolQuestion>
+class _CommunityMemberState extends State<CommunityMember>
     with AutomaticKeepAliveClientMixin {
   ScrollController _scrollController;
   double _appBarHeight = 200.0;
@@ -30,7 +30,7 @@ class _SchoolQuestionState extends State<SchoolQuestion>
 
     _scrollController = ScrollController()
       ..addListener(
-        () {
+            () {
           double _p = _scrollController.position.pixels
               .toDouble()
               .clamp(.0, _appBarHeight);
@@ -47,17 +47,20 @@ class _SchoolQuestionState extends State<SchoolQuestion>
   Widget build(BuildContext context) {
     return CustomScrollView(
       controller: _scrollController,
-      key: new PageStorageKey<String>('SchoolQuestion'),
+      key: new PageStorageKey<String>('CommunityMember'),
       slivers: <Widget>[
         new SliverOverlapInjector(
           handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) =>
-                  Text('school_question ' '$index'),
-              childCount: 55),
-        )
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) => Text('community_member $index'),
+              childCount: 55,
+            ),
+          ),
+        ),
       ],
     );
   }

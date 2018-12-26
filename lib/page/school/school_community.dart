@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../community/community_detail.dart';
 
 typedef ScrollControllerCallback(double position);
 
@@ -91,7 +92,10 @@ class _SchoolCommunityState extends State<SchoolCommunity>
                           child: Image.asset(url, fit: BoxFit.cover),
                         ),
                         onTap: () {
-                          print(url);
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) {
+                            return CommunityDetail();
+                          }));
                         },
                       ),
                 )
