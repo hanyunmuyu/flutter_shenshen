@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'community_activity.dart';
 import 'community_news.dart';
 import 'community_member.dart';
+import 'communityl_post.dart';
+
 class CommunityDetail extends StatefulWidget {
   @override
   State createState() {
@@ -71,7 +73,19 @@ class _CommunityDetailState extends State<CommunityDetail>
         preferredSize: Size(double.infinity, 22.0),
       ),
       actions: <Widget>[
-        Icon(Icons.camera_enhance),
+        IconButton(
+          icon: Icon(Icons.camera_alt),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) {
+                  return CommunityPost();
+                },
+              ),
+            );
+          },
+        ),
       ],
     );
     return Scaffold(

@@ -78,12 +78,18 @@ class _SchoolDetailPageState extends State<SchoolDetailPage>
       ),
       actions: <Widget>[
         IconButton(
-            icon: Icon(Icons.camera_alt),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return SchoolPost();
-              }));
-            }),
+          icon: Icon(Icons.camera_alt),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) {
+                  return SchoolPost();
+                },
+              ),
+            );
+          },
+        ),
       ],
     );
     return Scaffold(

@@ -3,18 +3,17 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import '../../http/HttpClient.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:video_player/video_player.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:io';
 
-class SchoolPost extends StatefulWidget {
+class CommunityPost extends StatefulWidget {
   @override
   State createState() {
-    return _SchoolPostState();
+    return _CommunityPostState();
   }
 }
 
-class _SchoolPostState extends State<SchoolPost> {
+class _CommunityPostState extends State<CommunityPost> {
   List _imgList = [];
   TextEditingController _textEditingController = TextEditingController();
 
