@@ -1,10 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'dart:io';
-
+import '../../http/HttpClient.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/foundation.dart';
+import 'dart:io';
 
 class SchoolPost extends StatefulWidget {
   @override
@@ -26,6 +27,19 @@ class _SchoolPostState extends State<SchoolPost> {
           FlatButton(
             onPressed: () {
               print(_imgList);
+              FormData formData = new FormData.from(
+                {
+                  'file[]': List.generate(_imgList.length, (index) {
+                    return UploadFileInfo(
+                      _imgList[index],
+                      _getExtension(_imgList[index].path),
+                    );
+                  })
+                },
+              );
+              HttpClient.post('/api/v1/school/post', formData).then((v) {
+                print(v);
+              });
             },
             child: Text(
               '发布',
@@ -51,6 +65,10 @@ class _SchoolPostState extends State<SchoolPost> {
     );
   }
 
+  String _getExtension(String path) {
+    return path.split('/').last;
+  }
+
   Widget _buildImgListWidget(imgList) {
     List<Widget> _list = List.generate(_imgList.length, (index) {
       return Dismissible(
@@ -63,8 +81,11 @@ class _SchoolPostState extends State<SchoolPost> {
         },
         //如果指定了background 他将会堆叠在Dismissible child后面 并在child移除时暴露
         background: new Container(
-          color: Colors.red,
-          child: Text('左滑删除'),
+          alignment: Alignment.center,
+          child: Text(
+            '滑动删除',
+            style: TextStyle(color: Colors.red),
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -81,16 +102,16 @@ class _SchoolPostState extends State<SchoolPost> {
   }
 
   Future getImage() async {
-    if (_imgList.length > 3) {
-      return;
-    }
     File image = await ImagePicker.pickImage(
       source: ImageSource.camera,
       maxWidth: 100.0,
       maxHeight: 100.0,
-    );
-    _imgList.add(image);
-    print(_imgList.length);
-    setState(() {});
+    ).then((file) {
+      if (file != null) {
+        print(file);
+        _imgList.add(file);
+        setState(() {});
+      }
+    });
   }
 }

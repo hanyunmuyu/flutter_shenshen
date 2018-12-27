@@ -14,7 +14,7 @@ class HttpClient {
     return response.data.toString();
   }
 
-  static Future post(String path, Map<String, dynamic> mapData) async {
+  static Future post(String path, dynamic mapData) async {
     Response response;
     try {
       response = await dio.post(path, data: mapData);
