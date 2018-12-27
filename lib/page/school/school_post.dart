@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
+import 'package:flutter/foundation.dart';
 
 class SchoolPost extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class SchoolPost extends StatefulWidget {
 }
 
 class _SchoolPostState extends State<SchoolPost> {
-  List _imgList = <Widget>[];
+  List _imgList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,14 @@ class _SchoolPostState extends State<SchoolPost> {
         centerTitle: true,
         actions: <Widget>[
           FlatButton(
-            onPressed: () {},
-            child: Text('发布'),
+            onPressed: () {
+              print(_imgList);
+            },
+            child: Text(
+              '发布',
+              textScaleFactor: 1.2,
+            ),
+            textColor: Colors.white,
           ),
         ],
       ),
@@ -32,11 +39,7 @@ class _SchoolPostState extends State<SchoolPost> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TextField(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: _imgList,
-          ),
+          _buildImgListWidget(_imgList),
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
@@ -48,19 +51,46 @@ class _SchoolPostState extends State<SchoolPost> {
     );
   }
 
+  Widget _buildImgListWidget(imgList) {
+    List<Widget> _list = List.generate(_imgList.length, (index) {
+      return Dismissible(
+        key: Key('$index'),
+        onDismissed: (direction) {
+          //这个和Android的SnackBar差不多
+          setState(() {
+            _imgList.removeAt(index);
+          });
+        },
+        //如果指定了background 他将会堆叠在Dismissible child后面 并在child移除时暴露
+        background: new Container(
+          color: Colors.red,
+          child: Text('左滑删除'),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: new Image.file(_imgList[index]),
+        ),
+      );
+    });
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: _list,
+    );
+  }
+
   Future getImage() async {
     if (_imgList.length > 3) {
       return;
     }
     File image = await ImagePicker.pickImage(
       source: ImageSource.camera,
-      maxWidth: 80.0,
-      maxHeight: 80.0,
+      maxWidth: 100.0,
+      maxHeight: 100.0,
     );
-
-    setState(() {
-      _imgList.add(new Image.file(image));
-      _imgList.reversed;
-    });
+    _imgList.add(image);
+    print(_imgList.length);
+    setState(() {});
   }
 }
