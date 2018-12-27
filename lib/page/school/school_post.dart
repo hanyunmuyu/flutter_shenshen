@@ -38,7 +38,8 @@ class _SchoolPostState extends State<SchoolPost> {
                   'content': _textEditingController.text.toString()
                 },
               );
-              HttpClient.post('/api/v1/school/post', formData).then((v) {
+              HttpClient.post(context, '/api/v1/school/post', formData)
+                  .then((v) {
                 print(v);
               });
             },
