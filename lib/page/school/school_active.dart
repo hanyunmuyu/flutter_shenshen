@@ -86,8 +86,11 @@ class ActiveDetail extends StatelessWidget {
       children: <Widget>[
         Stack(
           children: <Widget>[
-            CircleAvatar(
-              backgroundImage: AssetImage('images/c.jpg'),
+            Align(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('images/c.jpg'),
+              ),
+              alignment: Alignment.centerLeft,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 50.0),
@@ -102,10 +105,6 @@ class ActiveDetail extends StatelessWidget {
                   Text('3小时前'),
                 ],
               ),
-            ),
-            Align(
-              child: Icon(Icons.more_vert),
-              alignment: Alignment.centerRight,
             )
           ],
         ),

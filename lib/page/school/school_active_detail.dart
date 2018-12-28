@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
 
 class SchoolActiveDetail extends StatelessWidget {
+  final ScrollController _controller = ScrollController()
+    ..addListener(() {
+      print(111);
+    });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.favorite_border,
+              color: Colors.white,
+            ),
+            onPressed: null,
+          )
+        ],
+      ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
@@ -13,20 +28,17 @@ class SchoolActiveDetail extends StatelessWidget {
               child: Builder(
                 builder: (BuildContext context) {
                   return CustomScrollView(
-                    key: new PageStorageKey<String>('SchoolActive'),
+                    controller: _controller,
+                    key: new PageStorageKey<String>('SchoolActiveDetail'),
                     slivers: <Widget>[
                       SliverToBoxAdapter(
                         child: ActiveDetail(true),
                       ),
                       SliverPadding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
                         sliver: SliverList(
                           delegate: SliverChildBuilderDelegate(
-                            (BuildContext context, int index) =>
-                                GestureDetector(
-                                  child: ActiveDetail(false),
-                                  onTap: () {},
-                                ),
+                            (BuildContext context, int index) => PostDetail(),
                             childCount: 55,
                           ),
                         ),
@@ -57,6 +69,58 @@ class SchoolActiveDetail extends StatelessWidget {
   }
 }
 
+class PostDetail extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+            Align(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('images/c.jpg'),
+                radius: 12.0,
+              ),
+              alignment: Alignment.centerLeft,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    '寒云',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text('3小时前'),
+                ],
+              ),
+            ),
+            Align(
+              child: Icon(
+                Icons.thumb_up,
+                size: 12.0,
+                color: Theme.of(context).primaryColor,
+              ),
+              alignment: Alignment.centerRight,
+            )
+          ],
+        ),
+        Text(
+          '  生命里，一些缱绻，无论素净，还是喧哗，都已经被岁月赋予了清喜的味道，一些闲词，或清新，或淡雅，总会在某一个回眸的时刻醉了流年，濡湿了柔软的心，冥冥之中，我们沿着呼唤的风声，终于在堆满落花的秋里，再次重逢，念在天涯，心在咫尺，我相信，一米阳光，才是我们最好的距离。',
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+        ),
+        Divider(
+          indent: 4,
+        ),
+      ],
+    );
+  }
+}
+
 class ActiveDetail extends StatelessWidget {
   final bool hasPic;
 
@@ -64,6 +128,8 @@ class ActiveDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
@@ -100,7 +166,7 @@ class ActiveDetail extends StatelessWidget {
         Offstage(
           offstage: !hasPic,
           child: Container(
-            height: 280.0,
+            height: _width / 3 * 2 + 10,
             alignment: Alignment.center,
             child: GridView.count(
               crossAxisCount: 3,
