@@ -9,27 +9,34 @@ class SchoolActiveDetail extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Expanded(
-              child: SafeArea(child: Builder(builder: (BuildContext context) {
-            return ListView(
-              children: <Widget>[
-                ActiveDetail(true),
-                Divider(),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-                ActiveDetail(false),
-              ],
-            );
-          }))),
+            child: SafeArea(
+              child: Builder(
+                builder: (BuildContext context) {
+                  return CustomScrollView(
+                    key: new PageStorageKey<String>('SchoolActive'),
+                    slivers: <Widget>[
+                      SliverToBoxAdapter(
+                        child: ActiveDetail(true),
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        sliver: SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int index) =>
+                                GestureDetector(
+                                  child: ActiveDetail(false),
+                                  onTap: () {},
+                                ),
+                            childCount: 55,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
           Align(
             child: TextField(
               decoration: InputDecoration(
@@ -117,43 +124,25 @@ class ActiveDetail extends StatelessWidget {
             ),
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            GestureDetector(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Icon(
-                    Icons.thumb_up,
-                    size: 12.0,
-                    color: hasPic ? Theme.of(context).primaryColor : null,
-                  ),
-                  Divider(
-                    indent: 4,
-                  ),
-                  Text('111')
-                ],
-              ),
-              onTap: () {},
+        Align(
+          child: GestureDetector(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Icon(
+                  Icons.thumb_up,
+                  size: 12.0,
+                  color: hasPic ? Theme.of(context).primaryColor : null,
+                ),
+                Divider(
+                  indent: 4,
+                ),
+                Text('111')
+              ],
             ),
-            GestureDetector(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Icon(
-                    Icons.comment,
-                    size: 12.0,
-                  ),
-                  Divider(
-                    indent: 4,
-                  ),
-                  Text('111')
-                ],
-              ),
-              onTap: () {},
-            ),
-          ],
+            onTap: () {},
+          ),
+          alignment: Alignment.centerLeft,
         ),
         Divider(
           indent: 4,
