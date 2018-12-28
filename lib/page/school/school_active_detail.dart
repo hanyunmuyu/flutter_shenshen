@@ -1,75 +1,51 @@
 import 'package:flutter/material.dart';
-import 'school_active_detail.dart';
 
-typedef ScrollControllerCallback(double position);
-
-class SchoolActive extends StatefulWidget {
-  final ScrollControllerCallback callback;
-  final double appBarHeight;
-
-  SchoolActive({this.callback, this.appBarHeight = 200.0});
-
-  @override
-  State createState() {
-    return _SchoolActiveState();
-  }
-}
-
-class _SchoolActiveState extends State<SchoolActive>
-    with AutomaticKeepAliveClientMixin {
-  ScrollController _scrollController;
-  double _appBarHeight = 200.0;
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    _scrollController = ScrollController()
-      ..addListener(
-        () {
-          double _p = _scrollController.position.pixels
-              .toDouble()
-              .clamp(.0, _appBarHeight);
-          if (_p < widget.appBarHeight) {
-            if (widget.callback != null) {
-              widget.callback(_p);
-            }
-          }
-        },
-      );
-  }
-
+class SchoolActiveDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      controller: _scrollController,
-      key: new PageStorageKey<String>('SchoolActive'),
-      slivers: <Widget>[
-        new SliverOverlapInjector(
-          handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) => GestureDetector(
-                    child: ActiveDetail(index % 3 == 0),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) {
-                        return SchoolActiveDetail();
-                      }));
-                    },
-                  ),
-              childCount: 55,
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Expanded(
+              child: SafeArea(child: Builder(builder: (BuildContext context) {
+            return ListView(
+              children: <Widget>[
+                ActiveDetail(true),
+                Divider(),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+                ActiveDetail(false),
+              ],
+            );
+          }))),
+          Align(
+            child: TextField(
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(horizontal: 6.0),
+                hintText: '说点什么',
+                suffix: FlatButton(
+                  textColor: Theme.of(context).primaryColor,
+                  onPressed: () {},
+                  child: Text('发布'),
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
+            alignment: Alignment.bottomCenter,
+          )
+        ],
+      ),
     );
   }
 }
