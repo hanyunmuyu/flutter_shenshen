@@ -37,10 +37,9 @@ class _CommunityPostState extends State<CommunityPost> {
                   'content': _textEditingController.text.toString()
                 },
               );
-              HttpClient.post(context, '/api/v1/school/post', formData,
-                  callback: (context) {
-                print(context);
-                Navigator.pop(context);
+              HttpClient.post(context, '/api/v1/school/post', formData)
+                  .then((v) {
+                Navigator.maybePop(context);
               });
             },
             child: Text(

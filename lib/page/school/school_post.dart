@@ -40,7 +40,7 @@ class _SchoolPostState extends State<SchoolPost> {
               );
               HttpClient.post(context, '/api/v1/school/post', formData)
                   .then((v) {
-                print(v);
+                Navigator.maybePop(context);
               });
             },
             child: Text(
