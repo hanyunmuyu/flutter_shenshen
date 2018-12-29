@@ -45,6 +45,13 @@ class _SchoolActiveState extends State<SchoolActive>
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       controller: _scrollController,
