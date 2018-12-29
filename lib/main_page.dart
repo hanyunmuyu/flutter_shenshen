@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './page/school/school_page.dart';
 import './page/user/user_page.dart';
 import './page/explore/explore_page.dart';
+import './page/encounter/encounter.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -21,6 +22,7 @@ class _MainPageState extends State<MainPage>
       body: PageView(
         key: Key('MainPage'),
         children: <Widget>[
+          Encounter(),
           SchoolPage(),
           ExplorePage(),
           UserPage(),
@@ -30,6 +32,10 @@ class _MainPageState extends State<MainPage>
       ),
       bottomNavigationBar: new BottomNavigationBar(
         items: [
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.favorite),
+            title: new Text('遇见'),
+          ),
           new BottomNavigationBarItem(
             icon: new Icon(Icons.school),
             title: new Text('高校'),

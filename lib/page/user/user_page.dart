@@ -45,7 +45,13 @@ class _UserPageState extends State<UserPage> {
             ),
             title: Text('hanyun'),
             subtitle: Text('账号：6666'),
-            trailing: Text('个人主页 >'),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text('个人中心'),
+                Icon(Icons.navigate_next),
+              ],
+            ),
           ),
           Divider(),
           Row(
@@ -75,12 +81,12 @@ class _UserPageState extends State<UserPage> {
           ListTile(
             leading: Icon(Icons.group),
             title: Text('我的社团'),
-            trailing: Icon(Icons.arrow_right),
+            trailing: Icon(Icons.navigate_next),
           ),
           ListTile(
             leading: Icon(Icons.school),
             title: Text('我的校园'),
-            trailing: Icon(Icons.arrow_right),
+            trailing: Icon(Icons.navigate_next),
           ),
           new StoreConnector<AppState, Store>(
             builder: (context, store) {
@@ -108,7 +114,7 @@ class _UserPageState extends State<UserPage> {
           ListTile(
             leading: Icon(Icons.games),
             title: Text('更多主题'),
-            trailing: Icon(Icons.arrow_right),
+            trailing: Icon(Icons.navigate_next),
             onTap: () {
               Navigator.push(
                 context,
@@ -121,7 +127,7 @@ class _UserPageState extends State<UserPage> {
           ListTile(
             leading: Icon(Icons.info_outline),
             title: Text('关于我们'),
-            trailing: Icon(Icons.arrow_right),
+            trailing: Icon(Icons.navigate_next),
             onTap: () {},
           ),
           new StoreConnector<AppState, Store>(
