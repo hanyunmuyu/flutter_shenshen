@@ -34,7 +34,7 @@ class _MainPageState extends State<MainPage>
         items: [
           new BottomNavigationBarItem(
             icon: new Icon(Icons.favorite),
-            title: new Text('遇见'),
+            title: new Text('邂逅'),
           ),
           new BottomNavigationBarItem(
             icon: new Icon(Icons.school),
