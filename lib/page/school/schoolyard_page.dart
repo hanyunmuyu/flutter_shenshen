@@ -63,7 +63,7 @@ class _SchoolyardPageState extends State<SchoolyardPage>
                     ),
                     title: Text('大学    $index'),
                     subtitle: Text('成员：10W    关注：10K   社团：100'),
-                    trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(Icons.navigate_next),
                     isThreeLine: true,
                     onTap: () {
                       Navigator.push(

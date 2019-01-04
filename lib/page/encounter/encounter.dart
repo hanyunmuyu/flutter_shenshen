@@ -174,7 +174,7 @@ class _EncounterState extends State<Encounter>
               ],
             ),
             right: 10.0,
-            bottom: 80.0,
+            bottom: _width * 0.5,
           ),
           AnimatedBuilder(
             animation: animation,
