@@ -30,7 +30,7 @@ class _CommunityMemberState extends State<CommunityMember>
 
     _scrollController = ScrollController()
       ..addListener(
-            () {
+        () {
           double _p = _scrollController.position.pixels
               .toDouble()
               .clamp(.0, _appBarHeight);
@@ -56,7 +56,8 @@ class _CommunityMemberState extends State<CommunityMember>
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
           sliver: SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) => Text('community_member $index'),
+              (BuildContext context, int index) =>
+                  Text('community_member $index'),
               childCount: 55,
             ),
           ),

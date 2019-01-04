@@ -16,6 +16,7 @@ class Storage {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.remove(key);
   }
+
   static clear() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.clear();

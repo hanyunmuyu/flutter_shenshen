@@ -30,7 +30,7 @@ class _CommunityNewsState extends State<CommunityNews>
 
     _scrollController = ScrollController()
       ..addListener(
-            () {
+        () {
           double _p = _scrollController.position.pixels
               .toDouble()
               .clamp(.0, _appBarHeight);
@@ -56,7 +56,8 @@ class _CommunityNewsState extends State<CommunityNews>
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
           sliver: SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) => Text('community_news $index'),
+              (BuildContext context, int index) =>
+                  Text('community_news $index'),
               childCount: 55,
             ),
           ),

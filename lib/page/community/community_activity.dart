@@ -56,7 +56,8 @@ class _CommunityActivityState extends State<CommunityActivity>
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
           sliver: SliverList(
             delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) => Text('community_activity $index'),
+              (BuildContext context, int index) =>
+                  Text('community_activity $index'),
               childCount: 55,
             ),
           ),

@@ -14,9 +14,7 @@ class _SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         title: Theme(
             data: Theme.of(context).copyWith(
-              brightness: Brightness.light,
-              accentColor: Colors.white
-            ),
+                brightness: Brightness.light, accentColor: Colors.white),
             child: TextField()),
       ),
     );
