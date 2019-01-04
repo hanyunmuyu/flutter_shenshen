@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../user/user_detail.dart';
 
 class StudentPage extends StatefulWidget {
   @override
@@ -31,7 +32,16 @@ class _StudentPageState extends State<StudentPage>
             ),
             dense: true,
             trailing: Icon(Icons.arrow_right),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) {
+                    return UserDetail();
+                  },
+                ),
+              );
+            },
             contentPadding: const EdgeInsets.symmetric(
               vertical: 2.0,
               horizontal: 4.0,

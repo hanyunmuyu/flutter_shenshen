@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../community/community_detail.dart';
 
 class CommunityPage extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _CommunityPageState extends State<CommunityPage>
   TabController _tabController;
   ScrollController _controller;
 
-  int _index = 2;
+  int _index = 0;
   final List<Tab> _myTabs = <Tab>[
     new Tab(
       text: '热门',
@@ -70,12 +71,66 @@ class _CommunityPageState extends State<CommunityPage>
           unselectedLabelStyle: new TextStyle(fontSize: 12.0),
         ),
         Expanded(
-          child: ListView.builder(
-            itemBuilder: (BuildContext context, int index) => ListTile(
-                  title: Text('$index'),
+          child: SafeArea(child: Builder(builder: (BuildContext context) {
+            return CustomScrollView(
+              key: new PageStorageKey<String>('SchoolCommunity'),
+              slivers: <Widget>[
+                SliverPadding(
+                  padding: const EdgeInsets.all(2.0),
+                  sliver: SliverGrid.count(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 2.0,
+                    mainAxisSpacing: 2.0,
+                    children: <String>[
+                      'images/c.jpg',
+                      'images/lf.jpg',
+                      'images/c.jpg',
+                      'images/c.jpg',
+                      'images/c.jpg',
+                      'images/lf.jpg',
+                      'images/c.jpg',
+                      'images/lf.jpg',
+                      'images/c.jpg',
+                      'images/c.jpg',
+                      'images/c.jpg',
+                      'images/lf.jpg',
+                      'images/c.jpg',
+                      'images/lf.jpg',
+                      'images/c.jpg',
+                      'images/c.jpg',
+                      'images/c.jpg',
+                      'images/lf.jpg',
+                    ]
+                        .map<Widget>(
+                          (String url) => GestureDetector(
+                                child: GridTile(
+                                  footer: GridTileBar(
+                                    title: Text('社团 $url'),
+                                    subtitle: Text(
+                                      '关注:100 成员:50',
+                                      textScaleFactor: .8,
+                                    ),
+                                  ),
+                                  child: Image.asset(url, fit: BoxFit.cover),
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) {
+                                        return CommunityDetail();
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                        )
+                        .toList(),
+                  ),
                 ),
-            itemCount: _index,
-          ),
+              ],
+            );
+          })),
         ),
       ],
     );

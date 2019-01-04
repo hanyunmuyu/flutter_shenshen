@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import '../user/user_detail.dart';
 
 typedef ScrollControllerCallback(double position);
 
 class SchoolStudent extends StatefulWidget {
-  ScrollControllerCallback callback;
-  double appBarHeight;
+  final ScrollControllerCallback callback;
+  final double appBarHeight;
 
   SchoolStudent({this.callback, this.appBarHeight = 200.0});
 
@@ -62,6 +63,16 @@ class _SchoolStudentState extends State<SchoolStudent> {
                     ),
                     title: Text('student $index'),
                     subtitle: Text('student $index'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) {
+                            return UserDetail();
+                          },
+                        ),
+                      );
+                    },
                   ),
               childCount: 55),
         )
