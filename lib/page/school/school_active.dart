@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'school_active_detail.dart';
+import '../user/user_detail.dart';
 
 typedef ScrollControllerCallback(double position);
 
@@ -94,8 +95,15 @@ class ActiveDetail extends StatelessWidget {
         Stack(
           children: <Widget>[
             Align(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('images/c.jpg'),
+              child: GestureDetector(
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('images/c.jpg'),
+                ),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) {
+                    return UserDetail();
+                  }));
+                },
               ),
               alignment: Alignment.centerLeft,
             ),

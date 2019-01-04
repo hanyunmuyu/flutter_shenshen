@@ -5,6 +5,7 @@ import '../../service/UserService.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import '../../redux/AppState.dart';
+import 'user_detail.dart';
 
 class UserPage extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('个人中心'),
+        title: Text('我'),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -52,6 +53,16 @@ class _UserPageState extends State<UserPage> {
                 Icon(Icons.navigate_next),
               ],
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) {
+                    return UserDetail();
+                  },
+                ),
+              );
+            },
           ),
           Divider(),
           Row(

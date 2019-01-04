@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../user/user_detail.dart';
 
 class SchoolActiveDetail extends StatelessWidget {
   final ScrollController _controller = ScrollController()
@@ -65,6 +66,18 @@ class SchoolActiveDetail extends StatelessWidget {
           )
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _controller.animateTo(
+            0.0,
+            duration: Duration(milliseconds: 200),
+            curve: Curves.ease,
+          );
+        },
+        key: Key('schoolActiveDetail'),
+        child: Icon(Icons.arrow_upward),
+        mini: true,
+      ),
     );
   }
 }
@@ -78,9 +91,16 @@ class PostDetail extends StatelessWidget {
         Stack(
           children: <Widget>[
             Align(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('images/c.jpg'),
-                radius: 12.0,
+              child: GestureDetector(
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('images/c.jpg'),
+                  radius: 12.0,
+                ),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) {
+                    return UserDetail();
+                  }));
+                },
               ),
               alignment: Alignment.centerLeft,
             ),
@@ -135,8 +155,15 @@ class ActiveDetail extends StatelessWidget {
       children: <Widget>[
         Stack(
           children: <Widget>[
-            CircleAvatar(
-              backgroundImage: AssetImage('images/c.jpg'),
+            GestureDetector(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('images/c.jpg'),
+              ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) {
+                  return UserDetail();
+                }));
+              },
             ),
             Padding(
               padding: const EdgeInsets.only(left: 50.0),
@@ -174,6 +201,7 @@ class ActiveDetail extends StatelessWidget {
               padding: const EdgeInsets.all(4.0),
               mainAxisSpacing: 2.0,
               crossAxisSpacing: 2.0,
+              physics: ClampingScrollPhysics(),
               children: <String>[
                 'images/c.jpg',
                 'images/lf.jpg',

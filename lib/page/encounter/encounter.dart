@@ -91,7 +91,7 @@ class _EncounterState extends State<Encounter>
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('遇见'),
+        title: Text('邂逅'),
         centerTitle: true,
         actions: <Widget>[],
       ),
